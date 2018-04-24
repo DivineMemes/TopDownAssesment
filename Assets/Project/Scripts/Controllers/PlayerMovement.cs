@@ -28,6 +28,8 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        mousePos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.transform.position.z - transform.position.z));
+        mousePos.y = transform.position.y;
         Movement();
     }
 
@@ -40,9 +42,6 @@ public class PlayerMovement : MonoBehaviour
 
     void LookTowardsMouse()
     {
-        mousePos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.transform.position.z - transform.position.z));
-        mousePos.y = transform.position.y;
         transform.LookAt(mousePos);
-    //    Debug.DrawLine(transform.position, Input.mousePosition);
     }
 }
