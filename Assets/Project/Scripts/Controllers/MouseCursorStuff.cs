@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class MouseCursorStuff : MonoBehaviour
 {
-    bool cursorToggle = true;
+    //bool cursorToggle = true;
 
     void Awake()
     {
-        
+        Cursor.visible = false;
     }
     
 

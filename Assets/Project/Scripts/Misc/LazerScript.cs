@@ -12,7 +12,7 @@ public class LazerScript : MonoBehaviour, IShootable
     public float currentAmmo;
     bool IsReloading;
 
-    int x = 0;
+    //int x = 0;
     void Start()
     {
         currentAmmo = ammo;
@@ -51,18 +51,6 @@ public class LazerScript : MonoBehaviour, IShootable
         if(Input.GetKeyDown(KeyCode.R) && !IsReloading)
         {
             StartCoroutine(DoReload());
-        }
-    }
-
-    void Update()
-    {
-        if (!NeedsReload())
-        {
-            shoot();
-        }
-        else
-        {
-            reload();
         }
     }
 

@@ -4,5 +4,12 @@ using UnityEngine;
 
 public class Seeker : MonoBehaviour
 {
+    public float speed;
     
+
+
+    void Update()
+    {
+
+    }
 }

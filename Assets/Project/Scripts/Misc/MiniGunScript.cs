@@ -4,19 +4,24 @@ using UnityEngine;
 
 public class MiniGunScript : MonoBehaviour, IShootable
 {
-    IDamageable<float> damageable;
     public GameObject bullet;
     public Rigidbody rb;
+    Vector3 myPos;
     public int maxAmmo;
     public int currentAmmo;
     public float reloadTime;
+    public float speed;
+
 
     bool IsReloading;
 
     public float warmUp;
     float o_warmup;
 
-
+    void Update()
+    {
+        myPos = gameObject.transform.position;
+    }
     void Start()
     {
         o_warmup = warmUp;
@@ -36,19 +41,24 @@ public class MiniGunScript : MonoBehaviour, IShootable
             warmUp -= Time.deltaTime;
             if (warmUp <= 0)
             {
-                Instantiate(bullet, gameObject.transform.position, Quaternion.identity);
+                GameObject newBullet = Instantiate(bullet, myPos, Quaternion.identity);
+                newBullet.GetComponent<Rigidbody>().velocity = (transform.forward * speed);
                 currentAmmo--;
             }
-            else if(!Input.GetMouseButton(0))
-            {
-                warmUp = o_warmup;
-            }
+        }
+        else
+        {
+            warmUp = o_warmup;
         }
     }
 
     public void reload()
     {
-        StartCoroutine(reloading());
+        if (Input.GetKeyDown(KeyCode.R) && !IsReloading)
+        {
+            StartCoroutine(reloading());
+        }
+        
     }
 
     public IEnumerator reloading()
@@ -56,6 +66,7 @@ public class MiniGunScript : MonoBehaviour, IShootable
         IsReloading = true;
         yield return new WaitForSeconds(reloadTime);
         currentAmmo = maxAmmo;
+        warmUp = o_warmup;
         IsReloading = false;
     }
 }

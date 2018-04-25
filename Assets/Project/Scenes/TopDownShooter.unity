@@ -118,7 +118,7 @@ GameObject:
   - component: {fileID: 259605898}
   - component: {fileID: 259605901}
   - component: {fileID: 259605899}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -645,7 +645,7 @@ GameObject:
   - component: {fileID: 1688855199}
   - component: {fileID: 1688855201}
   - component: {fileID: 1688855200}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -778,7 +778,9 @@ MonoBehaviour:
   rb: {fileID: 54471413857457726, guid: 2edafbcb8e0cc28459250fa538694e60, type: 2}
   maxAmmo: 100
   currentAmmo: 0
-  warmUp: 0
+  reloadTime: 2
+  speed: 10
+  warmUp: 1.5
 --- !u!114 &1688855201
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ShotGunScript : MonoBehaviour, IShootable
-{
-    IDamageable<float> damageable;
+{ 
     public GameObject bullet;
     public Rigidbody rb;
     public int ammoMax;
