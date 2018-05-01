@@ -12,7 +12,6 @@ public class MiniGunScript : MonoBehaviour, IShootable
     public float reloadTime;
     public float speed;
 
-
     bool IsReloading;
 
     public float warmUp;
@@ -34,16 +33,20 @@ public class MiniGunScript : MonoBehaviour, IShootable
         return currentAmmo <= 0;
     }
 
-    public void shoot()
+    public void shoot(bool isInfinite)
     {
-        if(Input.GetMouseButton(0) && currentAmmo > 0)
+        if (Input.GetMouseButton(0) && currentAmmo > 0)
         {
             warmUp -= Time.deltaTime;
             if (warmUp <= 0)
             {
                 GameObject newBullet = Instantiate(bullet, myPos, Quaternion.identity);
                 newBullet.GetComponent<Rigidbody>().velocity = (transform.forward * speed);
-                currentAmmo--;
+
+                if (!isInfinite)
+                { 
+                    currentAmmo--;
+                }
             }
         }
         else

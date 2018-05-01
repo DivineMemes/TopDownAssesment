@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Seeker : MonoBehaviour
 {
+
+    IDamageable<float> damageable;
+    public float damage;
     public float speed;
     GameObject player;
     Rigidbody rb;
@@ -26,5 +29,19 @@ public class Seeker : MonoBehaviour
         rb.AddForce(desiredVel - rb.velocity);
 
         transform.LookAt(player.transform.position);
+    }
+
+
+    void OnCollisionEnter(Collision other)
+    {
+        if(other.collider.tag == "Player")
+        {
+            damageable = other.collider.GetComponent<IDamageable<float>>();
+            if(damageable != null)
+            {
+                damageable.Damage(damage);
+                Destroy(gameObject);
+            }
+        }
     }
 }

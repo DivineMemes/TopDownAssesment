@@ -15,15 +15,25 @@ public class PlayerMovement : MonoBehaviour
 
     [Tooltip ("make this number small it scales drastically")]
     public float speed;
-
+    public bool SpeedBoost;
+    public float BoostTime;
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        SpeedBoost = false;
     }
     void FixedUpdate()
     {
         LookTowardsMouse();
-        rb.velocity = movement * speed;
+        if(!SpeedBoost)
+        {
+             rb.velocity = movement * speed;
+        }
+        if(SpeedBoost)
+        {
+            rb.velocity = movement * (speed * 2);
+            StartCoroutine(SpeedBoosted());
+        }
     }
 
     void Update()
@@ -43,5 +53,12 @@ public class PlayerMovement : MonoBehaviour
     void LookTowardsMouse()
     {
         transform.LookAt(mousePos);
+    }
+
+
+    IEnumerator SpeedBoosted()
+    {
+        yield return new WaitForSeconds(BoostTime);
+        SpeedBoost = false;
     }
 }

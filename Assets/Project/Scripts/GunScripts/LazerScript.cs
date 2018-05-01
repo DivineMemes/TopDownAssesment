@@ -22,15 +22,18 @@ public class LazerScript : MonoBehaviour, IShootable
         return currentAmmo <= 0;
     }
 
-    public void shoot()
+    public void shoot(bool isInfinite)
     {
         RaycastHit hit;
         if (Input.GetMouseButton(0) && currentAmmo > 0)
         {
             Physics.Raycast(transform.position, transform.forward, out hit, 100f, layer);
             //LineRenderer line = new GameObject("Lazer " + x.ToString()).AddComponent<LineRenderer>();
-            currentAmmo -= 1f;
-            if(hit.collider != null)
+
+            if (!isInfinite)
+            { currentAmmo -= 1f; }
+
+            if (hit.collider != null)
             {
                 if (hit.collider.tag == "Enemy")
                 {

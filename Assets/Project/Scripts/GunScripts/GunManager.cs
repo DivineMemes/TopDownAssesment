@@ -7,6 +7,8 @@ public class GunManager : MonoBehaviour
 
     IShootable[] currentGun;
     int Index;
+    public bool isInfinite = false;
+    public float InfiniteAmmoTime;
 
     void Start()
     {
@@ -18,11 +20,16 @@ public class GunManager : MonoBehaviour
         weaponSwitch();
         if (!currentGun[Index].NeedsReload())
         {
-            currentGun[Index].shoot();
+            currentGun[Index].shoot(isInfinite);
         }
         else
         {
             currentGun[Index].reload();
+        }
+
+        if(isInfinite)
+        {
+            StartCoroutine(infniteAmmo());
         }
         //Debug.Log("the length if the array is " + currentGun.Length);
         //Debug.Log("The current index is " + Index);
@@ -31,16 +38,16 @@ public class GunManager : MonoBehaviour
 
     void weaponSwitch()
     {
-        
-        if (Input.GetAxis("Mouse ScrollWheel")>0f)//forward
+
+        if (Input.GetAxis("Mouse ScrollWheel") > 0f)//forward
         {
             Index++;
-            if(Index > 1)
+            if (Index > 1)
             {
                 Index = 1;
             }
         }
-        else if(Input.GetAxis("Mouse ScrollWheel") < 0f) //backward
+        else if (Input.GetAxis("Mouse ScrollWheel") < 0f) //backward
         {
             Index--;
             if (Index < 0)
@@ -50,16 +57,10 @@ public class GunManager : MonoBehaviour
         }
     }
 
-
-}
-
-public interface IShootable
-{
-    void shoot();
-
-    bool NeedsReload();
-
-    void reload();
-
+    IEnumerator infniteAmmo()
+    {
+        yield return new WaitForSeconds(InfiniteAmmoTime);
+        isInfinite = false;
+    }
 
 }

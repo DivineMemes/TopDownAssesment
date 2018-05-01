@@ -8,6 +8,8 @@ public class PowerUpSpawner : MonoBehaviour
     public int spawnCount;
     float spawnTime;
     ObjectPool[] pool;
+    public float minSpawnTime;
+    public float maxSpawnTime;
 
 
     void Start()
@@ -62,7 +64,7 @@ public class PowerUpSpawner : MonoBehaviour
     {
         while (true)
         {
-            spawnTime = Random.Range(2, 5);
+            spawnTime = Random.Range(minSpawnTime, maxSpawnTime);
             yield return new WaitForSeconds(spawnTime);
             //
             GameObject powerUpToSpawn = powerUp[Random.Range(0, 3)];

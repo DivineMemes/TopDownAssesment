@@ -22,9 +22,11 @@ GameObject:
   - component: {fileID: 33732779299288696}
   - component: {fileID: 65085220993780740}
   - component: {fileID: 23393021865783396}
-  m_Layer: 0
+  - component: {fileID: 114443960039680786}
+  - component: {fileID: 114792827398934856}
+  m_Layer: 11
   m_Name: InfiniteAmmo
-  m_TagString: Untagged
+  m_TagString: PowerUp
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -55,7 +57,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 91eb7e3d24fb04c4ebd1bad3686b637a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -93,3 +95,26 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114443960039680786
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1057381307191578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8abecb2561dbd354b80c27da623c21e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114792827398934856
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1057381307191578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85591389c6be6b44cacee859b2585314, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myPool: {fileID: 0}

@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 23358498223675478}
   - component: {fileID: 114445935577724580}
   - component: {fileID: 114827041631233324}
+  - component: {fileID: 114509163823545288}
   m_Layer: 8
   m_Name: Lurker
   m_TagString: Enemy
@@ -95,6 +96,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myPool: {fileID: 0}
+--- !u!114 &114509163823545288
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1451892743279638}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7ac813f1251d0d46aad04092556ddaf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 5
 --- !u!114 &114827041631233324
 MonoBehaviour:
   m_ObjectHideFlags: 1
