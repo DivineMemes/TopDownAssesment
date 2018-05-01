@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Spawner : MonoBehaviour
+public class EnemySpawner : MonoBehaviour
 {
     public GameObject[] enemy;
     public int spawnCount;
     float spawnTime;
     ObjectPool[] pool;
-    
+
 
     void Start()
     {
@@ -22,10 +22,10 @@ public class Spawner : MonoBehaviour
 
     GameObject[] enemiesFromFolder()
     {
-        
+
         Object[] things = Resources.LoadAll("Enemies/");
         GameObject[] retval = new GameObject[things.Length];
-        for(int i  = 0; i < retval.Length; i++)
+        for (int i = 0; i < retval.Length; i++)
         {
             retval[i] = (GameObject)things[i];
         }
@@ -37,9 +37,9 @@ public class Spawner : MonoBehaviour
 
     void poolSpawn()
     {
-        for(int i = 0; i < spawnCount; i++)
+        for (int i = 0; i < spawnCount; i++)
         {
-            GameObject spawnedEnemy = pool[Random.Range(0,3)].getObject();
+            GameObject spawnedEnemy = pool[Random.Range(0, 3)].getObject();
             //spawnedEnemy.transform.position = Random.insideUnitCircle;
             Vector3 spawnPos = Random.insideUnitSphere * 20;
             spawnPos.y = 1;
@@ -70,7 +70,7 @@ public class Spawner : MonoBehaviour
             poolSpawn();
             //Spawn(enemyToSpawn);
         }
-            //Random.insideUnitCircle();
+        //Random.insideUnitCircle();
     }
 
 }

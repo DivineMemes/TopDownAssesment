@@ -6,9 +6,14 @@ public class Kamikaze : MonoBehaviour
 {
     public float speed;
     public float radius;
+    public float blastRadius;
+    public float damage;
+    public float fuseTime;
     GameObject player;
     Rigidbody rb;
-    bool playerNear;
+    public bool playerNear;
+
+    IDamageable<float> damageable;
 
     void Start()
     {
@@ -17,6 +22,7 @@ public class Kamikaze : MonoBehaviour
     }
     void Update()
     {
+        PlayerCheck();
         if (!playerNear)
         { 
             Chase();
@@ -25,7 +31,6 @@ public class Kamikaze : MonoBehaviour
         {
             Explode();
         }
-        PlayerCheck();
     }
 
     void Chase()
@@ -35,6 +40,8 @@ public class Kamikaze : MonoBehaviour
         rb.AddForce(desiredVel - rb.velocity);
 
         transform.LookAt(player.transform.position);
+
+
     }
 
     void PlayerCheck()
@@ -48,13 +55,27 @@ public class Kamikaze : MonoBehaviour
             {
                 playerNear = true;
             }
-            
-
         }
-
     }
     void Explode()
     {
-
+        rb.velocity =new Vector3(0,0,0);
+        Collider[] hood = Physics.OverlapSphere(transform.position, blastRadius);
+        foreach (Collider guyInHood in hood)
+        {
+            if (guyInHood.tag == "Player")
+            {
+                damageable = guyInHood.GetComponent<IDamageable<float>>();
+                if (damageable != null)
+                {
+                    fuseTime -= Time.deltaTime;
+                    if(fuseTime <= 0)
+                    {
+                        damageable.Damage(damage);
+                        Destroy(gameObject);
+                    }
+                }
+            }
+        }
     }
 }

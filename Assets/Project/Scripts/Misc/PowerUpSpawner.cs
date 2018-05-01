@@ -2,30 +2,30 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Spawner : MonoBehaviour
+public class PowerUpSpawner : MonoBehaviour
 {
-    public GameObject[] enemy;
+    public GameObject[] powerUp;
     public int spawnCount;
     float spawnTime;
     ObjectPool[] pool;
-    
+
 
     void Start()
     {
         pool = GetComponents<ObjectPool>();
         //for(int i = 0; i < )
-        enemy = enemiesFromFolder();
+        powerUp = powerUpsFromFolder();
         //enemy = GameObject.FindGameObjectsWithTag("Enemy");
         StartCoroutine(SpawnTimer());
     }
 
 
-    GameObject[] enemiesFromFolder()
+    GameObject[] powerUpsFromFolder()
     {
-        
-        Object[] things = Resources.LoadAll("Enemies/");
+
+        Object[] things = Resources.LoadAll("PowerUps/");
         GameObject[] retval = new GameObject[things.Length];
-        for(int i  = 0; i < retval.Length; i++)
+        for (int i = 0; i < retval.Length; i++)
         {
             retval[i] = (GameObject)things[i];
         }
@@ -37,24 +37,24 @@ public class Spawner : MonoBehaviour
 
     void poolSpawn()
     {
-        for(int i = 0; i < spawnCount; i++)
+        for (int i = 0; i < spawnCount; i++)
         {
-            GameObject spawnedEnemy = pool[Random.Range(0,3)].getObject();
+            GameObject spawnedPowerUp = pool[Random.Range(0, 3)].getObject();
             //spawnedEnemy.transform.position = Random.insideUnitCircle;
             Vector3 spawnPos = Random.insideUnitSphere * 20;
             spawnPos.y = 1;
-            spawnedEnemy.transform.position = spawnPos;
+            spawnedPowerUp.transform.position = spawnPos;
         }
     }
 
-    void Spawn(GameObject chosenEnemy)
+    void Spawn(GameObject chosenPowerUp)
     {
         for (int i = 0; i < spawnCount; i++)
         {
-            GameObject spawnedEnemy = Instantiate(chosenEnemy);
+            GameObject spawnedPowerUp = Instantiate(chosenPowerUp);
             Vector3 spawnPos = Random.insideUnitSphere * 20;
             spawnPos.y = 1;
-            spawnedEnemy.transform.position = spawnPos;
+            spawnedPowerUp.transform.position = spawnPos;
         }
     }
 
@@ -63,14 +63,10 @@ public class Spawner : MonoBehaviour
         while (true)
         {
             spawnTime = Random.Range(2, 5);
-            //Debug.Log(spawnTime);
             yield return new WaitForSeconds(spawnTime);
             //
-            GameObject enemyToSpawn = enemy[Random.Range(0, 3)];
+            GameObject powerUpToSpawn = powerUp[Random.Range(0, 3)];
             poolSpawn();
-            //Spawn(enemyToSpawn);
         }
-            //Random.insideUnitCircle();
     }
-
 }

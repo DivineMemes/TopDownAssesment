@@ -25,6 +25,7 @@ GameObject:
   - component: {fileID: 114188602394604054}
   - component: {fileID: 114584353331768732}
   - component: {fileID: 54040781410476176}
+  - component: {fileID: 114151471010524598}
   m_Layer: 8
   m_Name: Kamikaze
   m_TagString: Enemy
@@ -99,6 +100,23 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 4
   m_CollisionDetection: 0
+--- !u!114 &114151471010524598
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1396256904220370}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73d335ff5af7ebd4f88148700a1d560c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 2
+  radius: 4
+  blastRadius: 5
+  damage: 10
+  fuseTime: 2
+  playerNear: 0
 --- !u!114 &114188602394604054
 MonoBehaviour:
   m_ObjectHideFlags: 1

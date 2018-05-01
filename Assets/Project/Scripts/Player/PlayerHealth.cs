@@ -2,8 +2,28 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerHealth : MonoBehaviour
+public class PlayerHealth : MonoBehaviour, IDamageable<float>
 {
     public float maxHealth;
-    float currentHealth;
+    public float currentHealth;
+
+    void Start()
+    {
+        currentHealth = maxHealth;
+    }
+
+    public void Damage(float damageTaken)
+    {
+        currentHealth -= damageTaken;
+    }
+
+    void Update()
+    {
+        if(currentHealth <= 0)
+        {
+            Destroy(gameObject);
+        }
+    }
+
+
 }
