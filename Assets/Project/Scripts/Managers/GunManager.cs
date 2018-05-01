@@ -24,8 +24,8 @@ public class GunManager : MonoBehaviour
         {
             currentGun[Index].reload();
         }
-        Debug.Log("the length if the array is " + currentGun.Length);
-        Debug.Log("The current index is " + Index);
+        //Debug.Log("the length if the array is " + currentGun.Length);
+        //Debug.Log("The current index is " + Index);
     }
 
 
@@ -35,9 +35,9 @@ public class GunManager : MonoBehaviour
         if (Input.GetAxis("Mouse ScrollWheel")>0f)//forward
         {
             Index++;
-            if(Index > 2)
+            if(Index > 1)
             {
-                Index = 2;
+                Index = 1;
             }
         }
         else if(Input.GetAxis("Mouse ScrollWheel") < 0f) //backward
