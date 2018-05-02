@@ -6,9 +6,11 @@ public class InfiniteAmmoScript : MonoBehaviour
 {
 
     GunManager guns;
+    PooledObject pooledObject;
     void Start()
     {
-        guns = GameObject.FindGameObjectWithTag("Player").GetComponent<GunManager>();
+        pooledObject = GetComponent<PooledObject>();
+        //guns = GameObject.FindGameObjectWithTag("Player").GetComponent<GunManager>();
     }
     void Update()
     {
@@ -23,8 +25,10 @@ public class InfiniteAmmoScript : MonoBehaviour
     {
         if (other.collider.tag == "Player")
         {
+            guns = other.collider.GetComponent<GunManager>();
             guns.isInfinite = true;
-            Destroy(gameObject);
+            pooledObject.returnToPool();
+            // Destroy(gameObject);
         }
     }
 }

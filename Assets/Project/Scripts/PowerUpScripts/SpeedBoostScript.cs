@@ -5,10 +5,11 @@ using UnityEngine;
 public class SpeedBoostScript : MonoBehaviour
 {
     PlayerMovement moveScript;
-
+    PooledObject pooledObject;
     void Start()
     {
-        moveScript = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
+        pooledObject = GetComponent<PooledObject>();
+        //moveScript = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
     }
 	void Update ()
     {
@@ -23,8 +24,12 @@ public class SpeedBoostScript : MonoBehaviour
     {
         if(other.collider.tag == "Player")
         {
-            moveScript.SpeedBoost = true;
-            Destroy(gameObject);
+            moveScript = other.collider.GetComponent<PlayerMovement>();
+           
+            moveScript.activateSpeedBoost();
+            //moveScript.SpeedBoost = true;
+            pooledObject.returnToPool();    
+        //Destroy(gameObject);
         }
     }
 }

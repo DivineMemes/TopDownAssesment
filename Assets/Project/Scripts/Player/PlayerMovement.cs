@@ -32,7 +32,7 @@ public class PlayerMovement : MonoBehaviour
         if(SpeedBoost)
         {
             rb.velocity = movement * (speed * 2);
-            StartCoroutine(SpeedBoosted());
+            //StartCoroutine(SpeedBoosted());
         }
     }
 
@@ -55,9 +55,15 @@ public class PlayerMovement : MonoBehaviour
         transform.LookAt(mousePos);
     }
 
+    public void activateSpeedBoost()
+    {
+        StartCoroutine(SpeedBoosted());
+        SpeedBoost = true;
+    }
 
     IEnumerator SpeedBoosted()
     {
+        Debug.Log("RanSpeedBoost");
         yield return new WaitForSeconds(BoostTime);
         SpeedBoost = false;
     }

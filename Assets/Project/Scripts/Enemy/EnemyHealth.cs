@@ -13,17 +13,18 @@ public class EnemyHealth : MonoBehaviour, IDamageable<float>
         currentHealth = health;
     }
 
-    void Update()
+   void OnEnable()
     {
-        if (currentHealth <= 0)
-        {
-            Destroy(gameObject);
-        }
+        currentHealth = health;
     }
 
     public void Damage(float pain)
     {
         currentHealth -= pain;
+        if (currentHealth <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 
 }

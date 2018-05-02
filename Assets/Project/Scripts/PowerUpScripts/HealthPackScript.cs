@@ -6,9 +6,11 @@ public class HealthPackScript : MonoBehaviour
 {
     PlayerHealth health;
     public float healthAdd;
+    PooledObject pooledObject;
     void Start()
     {
-        health = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>();
+        pooledObject = GetComponent<PooledObject>();
+        //health = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>();
     }
     void Update()
     {
@@ -24,8 +26,10 @@ public class HealthPackScript : MonoBehaviour
     {
         if (other.collider.tag == "Player")
         {
+            health = other.collider.GetComponent<PlayerHealth>();
             health.currentHealth += healthAdd;
-            Destroy(gameObject);
+            pooledObject.returnToPool();
+            //Destroy(gameObject);
         }
     }
 

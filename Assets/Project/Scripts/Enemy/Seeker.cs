@@ -10,10 +10,12 @@ public class Seeker : MonoBehaviour
     public float speed;
     GameObject player;
     Rigidbody rb;
+    PooledObject pooledObject;
 
 
     void Start()
     {
+        pooledObject = GetComponent<PooledObject>();
         player = GameObject.FindGameObjectWithTag("Player");
         rb = GetComponent<Rigidbody>();
     }
@@ -40,7 +42,8 @@ public class Seeker : MonoBehaviour
             if(damageable != null)
             {
                 damageable.Damage(damage);
-                Destroy(gameObject);
+                //Destroy(gameObject);
+                pooledObject.returnToPool();
             }
         }
     }

@@ -9,16 +9,23 @@ public class Kamikaze : MonoBehaviour
     public float blastRadius;
     public float damage;
     public float fuseTime;
+    public float fuseMax;
     GameObject player;
     Rigidbody rb;
     public bool playerNear;
+    PooledObject pooledObject;
 
     IDamageable<float> damageable;
 
     void Start()
     {
+        pooledObject = GetComponent<PooledObject>();
         player = GameObject.FindGameObjectWithTag("Player");
         rb = GetComponent<Rigidbody>();
+    }
+    void OnEnable()
+    {
+        fuseTime = fuseMax;
     }
     void Update()
     {
@@ -72,7 +79,8 @@ public class Kamikaze : MonoBehaviour
                     if(fuseTime <= 0)
                     {
                         damageable.Damage(damage);
-                        Destroy(gameObject);
+                        pooledObject.returnToPool();
+                        //Destroy(gameObject);
                     }
                 }
             }

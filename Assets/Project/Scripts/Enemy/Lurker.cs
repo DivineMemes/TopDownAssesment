@@ -6,7 +6,12 @@ public class Lurker : MonoBehaviour
 {
     IDamageable<float> damageable;
     public float damage;
+    PooledObject pooledObject;
 
+    void Start()
+    {
+        pooledObject = GetComponent<PooledObject>();
+    }
 
     void OnCollisionEnter(Collision other)
     {
@@ -17,6 +22,7 @@ public class Lurker : MonoBehaviour
             {
                 damageable.Damage(damage);
                 //Destroy(gameObject);
+                pooledObject.returnToPool();
             }
         }
     }

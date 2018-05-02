@@ -15,14 +15,15 @@ public class PlayerHealth : MonoBehaviour, IDamageable<float>
     public void Damage(float damageTaken)
     {
         currentHealth -= damageTaken;
+        if (currentHealth <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 
     void Update()
     {
-        if(currentHealth <= 0)
-        {
-            Destroy(gameObject);
-        }
+        
     }
 
 
